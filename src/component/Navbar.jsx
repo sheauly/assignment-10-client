@@ -30,11 +30,11 @@ const Navbar = () => {
     );
     
     return (
-        <div className="w-11/12 mx-auto bg-white shadow-md rounded-xl mt-5">
-                    <div className="navbar py-4 px-4 flex justify-between items-center">
+        <div className="w-11/12 mx-auto bg-white shadow-md rounded-xl mt-4">
+                    <div className="navbar flex justify-between items-center">
                         {/* Logo Section */}
                         <div className="flex items-center gap-3">
-                            <img src={logoImage} alt="logo" className="w-24 h-auto object-contain" />
+                            <img src={logoImage} alt="logo" className="w-30 h-auto object-contain" />
                             <h1 className="text-2xl font-bold text-green-700 hidden sm:block">RoomeMateBond</h1>
                         </div>
         
