@@ -8,59 +8,83 @@ const Navbar = () => {
             <>
                 <li>
                     <NavLink to="/" className={({ isActive }) =>
-                        isActive ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-blue-500"
+                        isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
                     }>Home</NavLink>
                 </li>
                 <li>
                     <NavLink to="" className={({ isActive }) =>
-                        isActive ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-blue-500"
+                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
                     }>Find Roommate</NavLink>
                 </li>
                 <li>
                     <NavLink to="" className={({ isActive }) =>
-                        isActive ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-blue-500"
+                        isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
                     }>Browse Listing</NavLink>
                 </li>
                 <li>
                     <NavLink to="" className={({ isActive }) =>
-                        isActive ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-blue-500"
+                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
                     }>My Listings</NavLink>
                 </li>
             </>
     );
     
     return (
-        <div className='w-11/12 mx-auto mt-2 '>
-            <div className="navbar bg-gray-100 shadow-sm rounded-xl">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+        <div className="w-11/12 mx-auto bg-white shadow-md rounded-xl mt-5">
+                    <div className="navbar py-4 px-4 flex justify-between items-center">
+                        {/* Logo Section */}
+                        <div className="flex items-center gap-3">
+                            <img src={logoImage} alt="logo" className="w-24 h-auto object-contain" />
+                            <h1 className="text-2xl font-bold text-green-700 hidden sm:block">RoomeMateBond</h1>
                         </div>
-                        <ul
-                            tabIndex={0}
-                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-                            <li><a>Item 1</a></li>
-                            <li><a>Item 3</a></li>
-                        </ul>
-                    </div>
-                    <div className="flex items-center">
-                        <img src={logoImage} alt="logo" className="w-24 h-auto object-contain" />
-                        <h1 className="text-2xl font-bold text-green-700 hidden sm:block">RoomeBond</h1>
-                    </div>
-                </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        <li><a>Item 1</a></li>
+        
+                        {/* Desktop Nav */}
+                        <div className="hidden lg:flex">
+                            <ul className="menu menu-horizontal gap-6">
+                                {navLinks}
+                            </ul>
+                        </div>
+        
+                        {/* Auth Buttons */}
+                        <div className="flex items-center gap-4">
+                            
+                                <>
+                                   
+                        <button className="btn btn-outline text-green-700 hidden sm:inline-flex">
+                                        Log out
+                                    </button>
+                                </>
+                            
+                                <Link to="/auth/login" className="btn btn-outline text-green-700">
+                                    Login
+                                </Link>
                         
-                        <li><a>Item 3</a></li>
-                    </ul>
+                        </div>
+        
+                        {/* Mobile Nav Toggle */}
+                        <div className="lg:hidden">
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                            d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                </label>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-50 p-2 shadow bg-base-100 rounded-box w-52">
+                                    {navLinks}
+                                    
+                                        <li>
+                                            <button className="text-left text-red-500 hover:text-red-700">
+                                                Log out
+                                            </button>
+                                        </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div className="navbar-end">
-                    <Link className="btn text-green-700">Login</Link>
-                </div>
-            </div>
-        </div>
     );
 };
 
