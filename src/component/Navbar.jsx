@@ -8,22 +8,22 @@ const Navbar = () => {
             <>
                 <li>
                     <NavLink to="/" className={({ isActive }) =>
-                        isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
+                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-green-700"
                     }>Home</NavLink>
                 </li>
                 <li>
                     <NavLink to="" className={({ isActive }) =>
-                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
+                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-green-700"
                     }>Find Roommate</NavLink>
                 </li>
                 <li>
                     <NavLink to="" className={({ isActive }) =>
-                        isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
+                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-green-700"
                     }>Browse Listing</NavLink>
                 </li>
                 <li>
                     <NavLink to="" className={({ isActive }) =>
-                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-blue-500"
+                     isActive ? "text-green-700 font-semibold" : "text-gray-700 hover:text-green-700"
                     }>My Listings</NavLink>
                 </li>
             </>
