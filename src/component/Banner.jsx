@@ -17,25 +17,17 @@ export default function Banner() {
         <div>
             <Slider {...settings}>
                 <div className="relative h-[600px]">
-                    <img className="w-full h-full" src="/Banner.png" alt="" />
-                    <div className="absolute">
-                        <h1 className="text-5xl font-bold">🏠 "Find Your Ideal Roommate — Share More Than Just Rent!"</h1>
-                        <p>I’m currently living in a peaceful and well-furnished apartment in Banani, Dhaka, and looking for a responsible and friendly roommate to share the space. The apartment includes 2 bedrooms, 1 bathroom, a kitchen, and a spacious balcony. It offers all essential amenities such as free Wi-Fi, refrigerator, washing machine, and more. </p>
-                    </div>
+                    <img className="w-full h-full object-cover" src="/Banner.png" alt="Banner 1" />
                 </div>
                 <div className="h-[600px]">
-                    <img className="w-full h-full" src="/public/Banner2.png" alt="" />
-
-                </div>
-                <div className="h-[600px] ">
-                    <img className="w-full h-full" src="/public/image.jpg" alt="" />
-
+                    <img className="w-full h-full object-cover" src="/Banner2.png" alt="Banner 2" />
                 </div>
                 <div className="h-[600px]">
-                    <img className="w-full h-full" src="/public/images (2).png" alt="" />
-
+                    <img className="w-full h-full object-cover" src="/image.jpg" alt="Banner 3" />
                 </div>
-                
+                <div className="h-[600px]">
+                    <img className="w-full h-full object-cover" src="/images (2).png" alt="Banner 4" />
+                </div>
             </Slider>
         </div>
     );

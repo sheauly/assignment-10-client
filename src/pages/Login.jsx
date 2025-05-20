@@ -1,12 +1,32 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
+    const { signIn } = useContext(AuthContext);
+
+    const handleLogin = e => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const email = formData.get('email');
+        const password = formData.get('password');
+        console.log(email, password)
+
+        signIn(email, password)
+            .then(result => {
+            console.log(result)
+            })
+            .catch(error => {
+            console.log(error)
+        });
+        
+    }
     return (
         <div className="flex justify-center items-center min-h-screen px-4 py-10 bg-base-200">
                 <div className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white shadow-xl rounded-xl p-6 sm:p-8">
                     <h2 className="text-2xl font-bold text-center mb-6">Login Your Account</h2>
-                    <form  className="space-y-5">
+                    <form onSubmit={handleLogin} className="space-y-5">
             
 
                         {/* Email */}
@@ -22,7 +42,7 @@ const Login = () => {
                                 <input
                                     id="password"
                                     name="password"
-                                    type="text"
+                                    type="password"
                                     className="input input-bordered w-full pr-10"
                                     placeholder="Password"
                                     required
@@ -32,7 +52,7 @@ const Login = () => {
                            
                         </div>
 
-                        <button type="submit" className="btn btn-neutral w-full">Register</button>
+                        <button type="submit" className="btn btn-neutral w-full">Login</button>
 
                         <div className="divider">OR</div>
 
