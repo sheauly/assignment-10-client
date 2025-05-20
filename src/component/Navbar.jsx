@@ -33,9 +33,9 @@ const Navbar = () => {
         <div className="w-11/12 mx-auto bg-white shadow-md rounded-xl mt-4">
                     <div className="navbar flex justify-between items-center">
                         {/* Logo Section */}
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center -space-x-5">
                             <img src={logoImage} alt="logo" className="w-30 h-auto object-contain" />
-                            <h1 className="text-2xl font-bold text-green-700 hidden sm:block">RoomeMateBond</h1>
+                            <h1 className="text-2xl font-bold text-green-700 hidden sm:block">RoomeMate Finder</h1>
                         </div>
         
                         {/* Desktop Nav */}
@@ -55,7 +55,7 @@ const Navbar = () => {
                                     </button>
                                 </>
                             
-                                <Link to="/auth/login" className="btn btn-outline text-green-700">
+                                     <Link to="/auth/login" className="btn btn-outline text-green-700">
                                     Login
                                 </Link>
                         
