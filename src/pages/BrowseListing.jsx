@@ -43,7 +43,7 @@ const BrowseListings = () => {
                                 <td>{item.roomType}</td>
                                 <td>{item.availability}</td>
                                 <td>
-                                    <Link to={`/details/:id`}>
+                                    <Link to={`/details/${item._id}`}>
                                         <button className="btn btn-sm btn-outline btn-success">See More</button>
                                     </Link>
                                 </td>

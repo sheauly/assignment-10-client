@@ -1,56 +1,50 @@
-// src/pages/DetailsPage.jsx
-import { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import { toast } from 'react-toastify';
 
-const DetailsPage = () => {
-    const { id } = useParams();
+
+const Details = () => {
+    const post = useLoaderData();
     const { user } = useContext(AuthContext);
-    const [room, setRoom] = useState(null);
-    console.log('id', id)
-    useEffect(() => {
-        fetch(`http://localhost:3000/roommate/${id}`)
-            .then(res => res.json())
-            .then(data => setRoom(data))
-            .catch(err => console.error(err));
-    }, [id]);
+
+    const [liked, setLiked] = useState(post.likedBy?.includes(user?.email));
+    const [likeCount, setLikeCount] = useState(post.likeCount || 0);
 
     const handleLike = () => {
-        if (!user) return toast.error("Please login to like this post");
-
-        fetch(`http://localhost:3000/roommate/${id}`, {
+        fetch(`http://localhost:3000/roommate/${liked._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userEmail: user.email })
+            body: JSON.stringify({ userEmail: user.email }),
         })
             .then(res => res.json())
-            .then(data => {
-                if (data.modifiedCount > 0) {
-                    toast.success('Liked!');
-                    setRoom(prev => ({ ...prev, likeCount: prev.likeCount + 1 }));
-                }
-            });
+            .then(updated => {
+                setLiked(updated.likedBy.includes(user.email));
+                setLikeCount(updated.likeCount);
+            })
+            .catch(err => console.error(err));
     };
 
-    if (!room) return <div className="text-center p-10">Loading...</div>;
-
     return (
-        <div className="max-w-3xl mx-auto p-6">
-            <img src={room.image} alt={room.title} className="w-full rounded mb-4" />
-            <h1 className="text-2xl font-bold text-green-700">{room.title}</h1>
-            <p><strong>Location:</strong> {room.location}</p>
-            <p><strong>Rent:</strong> ৳{room.rent}</p>
-            <p><strong>Room Type:</strong> {room.roomType}</p>
-            <p><strong>Lifestyle:</strong> {room.lifestyle}</p>
-            <p><strong>Description:</strong> {room.description}</p>
-            <p><strong>Contact:</strong> {room.contact}</p>
-            <p><strong>Posted by:</strong> {room.userName} ({room.userEmail})</p>
-            <p><strong>Availability:</strong> {room.availability}</p>
-            <p><strong>Likes:</strong> {room.likeCount}</p>
-            <button onClick={handleLike} className="btn btn-success mt-4">Like</button>
+        <div className="max-w-3xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-10 space-y-4">
+            <img src={post.image} alt={post.title} className="w-full rounded-lg" />
+            <h2 className="text-2xl font-bold">{post.title}</h2>
+            <p><strong>Location:</strong> {post.location}</p>
+            <p><strong>Rent:</strong> {post.rent} TK</p>
+            <p><strong>Room Type:</strong> {post.roomType}</p>
+            <p><strong>Lifestyle:</strong> {post.lifestyle}</p>
+            <p><strong>Description:</strong> {post.description}</p>
+            <p><strong>Availability:</strong> {post.availability}</p>
+            <p><strong>Contact Email:</strong> {post.contact}</p>
+            <p><strong>Posted by:</strong> {post.userName} ({post.userEmail})</p>
+
+            <button
+                onClick={handleLike}
+                className={`px-4 py-2 mt-4 rounded ${liked ? 'bg-red-500 text-white' : 'bg-gray-300'}`}
+            >
+                ❤️ {liked ? 'Liked' : 'Like'} ({likeCount})
+            </button>
         </div>
     );
 };
 
-export default DetailsPage;
+export default Details;

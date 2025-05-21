@@ -4,7 +4,7 @@ import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -37,6 +37,16 @@ const Register = () => {
             });
     };
 
+    const handleGoogleRegister = () => {
+        googleSignIn()
+        .then(result => {
+            console.log(result)
+        })
+            .catch(error => {
+            console.log(error);
+        })
+    }
+
     return (
         <div className="flex justify-center items-center min-h-screen px-4 py-10 bg-base-200">
             <div className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white shadow-xl rounded-xl p-6 sm:p-8">
@@ -66,7 +76,7 @@ const Register = () => {
 
                     <div className="divider">OR</div>
 
-                    <button type="button" className="btn btn-outline btn-secondary w-full flex items-center justify-center gap-2">
+                    <button onClick={handleGoogleRegister} type="button" className="btn btn-outline btn-secondary w-full flex items-center justify-center gap-2">
                         {/* Google icon here */}
                         Register with Google
                     </button>
