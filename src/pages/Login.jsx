@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext} from 'react';
 import { Link } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn } = useContext(AuthContext);
+    
 
     const handleLogin = e => {
         e.preventDefault();
@@ -13,6 +14,8 @@ const Login = () => {
         const password = formData.get('password');
         console.log(email, password)
 
+      
+
         signIn(email, password)
             .then(result => {
             console.log(result)
@@ -21,6 +24,16 @@ const Login = () => {
             console.log(error)
         });
         
+    }
+
+    const handleGooglogin = () => {
+        googleSignIn()
+            .then(result => {
+                console.log(result)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
     return (
         <div className="flex justify-center items-center min-h-screen px-4 py-10 bg-base-200">
@@ -56,7 +69,7 @@ const Login = () => {
 
                         <div className="divider">OR</div>
 
-                        <button
+                        <button onClick={handleGooglogin}
                             type="button"
                             
                         className="btn btn-outline btn-secondary w-full flex items-center justify-center gap-2"

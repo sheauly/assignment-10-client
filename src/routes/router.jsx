@@ -8,7 +8,7 @@ import MyListing from "../pages/MyListing";
 import BrowseListing from "../pages/BrowseListing";
 import Details from "../pages/Details";
 import HomeLayOut from "../LayOut/HomeLayOut";
-import FiendRoomate from "./FindRoomate";
+
 import PrivetRoute from "../context/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -34,19 +34,14 @@ const router = createBrowserRouter([
                 path: "/add-listing",
                 element: <AddListing></AddListing>
             },
-            {
-                path: "/updated-lisiting",
-                element: <UpdatedListing></UpdatedListing>
-            },
            
             {
                 path: "/my-listings",
-                element: <MyListing></MyListing>
+                element: <PrivetRoute>
+                    <MyListing></MyListing>
+                </PrivetRoute>
             },
-            {
-                path: "/find-roommate",
-                element: <FiendRoomate></FiendRoomate>
-            },
+         
             {
                 path: "/browse-listings",
                 element: <BrowseListing></BrowseListing>
@@ -58,6 +53,13 @@ const router = createBrowserRouter([
                     <Details></Details>
                 </PrivetRoute>
             },
+            {
+                path: '/updatedListing/:id',
+                element: <PrivetRoute>
+                    <UpdatedListing></UpdatedListing>
+                </PrivetRoute>
+
+            }
             
         ]
     }

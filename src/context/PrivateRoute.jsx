@@ -2,14 +2,15 @@ import React, { use } from 'react';
 
 import { Navigate } from 'react-router';
 import { AuthContext } from './AuthContext';
+import Loader from '../pages/Loader';
 
 const PrivetRoute = ({ children }) => {
     const { user, loading } = use(AuthContext)
     // console.log(user)
 
     if (loading) {
-        return <div className="flex justify-center items-center h-screen">
-            <span className="loading loading-dots loading-xl text-primary"></span>
+        return <div>
+            <Loader></Loader>
         </div>
     }
     if (user && user?.email) {

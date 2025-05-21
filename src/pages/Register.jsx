@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const [error, setError] = useState(null);
+    
     const navigate = useNavigate();
 
     const handleSubmit = e => {
@@ -16,6 +17,15 @@ const Register = () => {
         const photo = formData.get('photo');
         const email = formData.get('email');
         const password = formData.get('password');
+
+        const uppercase = /[A-Z]/.test(password);
+        const lowercase = /[a-z]/.test(password);
+        const lengthValid = password.length >= 6;
+
+        if (!uppercase || !lowercase || !lengthValid) {
+            setError("Password must contain at least one uppercase, one lowercase and be 6+ characters.");
+            return;
+        }
 
         // Create user in Firebase
         createUser(email, password)
@@ -39,7 +49,8 @@ const Register = () => {
 
     const handleGoogleRegister = () => {
         googleSignIn()
-        .then(result => {
+            .then(result => {
+                navigate('/')
             console.log(result)
         })
             .catch(error => {
