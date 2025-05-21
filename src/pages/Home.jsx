@@ -5,9 +5,9 @@ import Banner from '../component/Banner';
 const Home = () => {
 
     const roommate = useLoaderData();
-
+    console.log(roommate)
     const availableRoommates = roommate.filter(roommate => roommate.availability === "Available");
-
+    console.log(availableRoommates)
     const initialRoommate = availableRoommates.slice(0, 6);
 
 
@@ -38,7 +38,7 @@ const Home = () => {
                     ))}
                 </div>
 
-                {/* নিচের See More Button */}
+               
                 <div className="text-center mt-8">
                     <Link to="/browse" className="btn btn-outline btn-primary">
                         See More Roommates
