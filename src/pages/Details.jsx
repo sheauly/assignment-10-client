@@ -2,51 +2,79 @@ import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-
 const Details = () => {
     const post = useLoaderData();
     const { user } = useContext(AuthContext);
 
-    const [liked, setLiked] = useState(post.likedBy?.includes(user?.email));
-    const [likeCount, setLikeCount] = useState(post.likeCount || 0);
+    const [liked, setLiked] = useState(false); // starts false
+    const [likeCount, setLikeCount] = useState(post.likes || 0);
+    const [showContact, setShowContact] = useState(false); // contact hidden initially
 
     const handleLike = () => {
-        fetch(`http://localhost:3000/roommate/${liked._id}`, {
+        if (!user) {
+            alert('You must be logged in to like this post!');
+            return;
+        }
+
+        // Send PATCH request to backend
+        fetch(`http://localhost:3000/roommate/${post._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userEmail: user.email }),
+            body: JSON.stringify({ isLike: true })
         })
-            .then(res => res.json())
-            .then(updated => {
-                setLiked(updated.likedBy.includes(user.email));
-                setLikeCount(updated.likeCount);
+            .then(res => {
+                if (!res.ok) throw new Error('Failed to update like count');
+                return res.json();
             })
-            .catch(err => console.error(err));
+            .then(() => {
+                setLiked(true);
+                setLikeCount(prev => prev + 1);
+                setShowContact(true);
+            })
+            .catch(err => {
+                console.error(err);
+                alert('Something went wrong!');
+            });
     };
 
     return (
-        <div className="max-w-3xl flex mx-auto p-6 m-8 bg-white shadow-lg rounded-lg mt-10 space-y-4">
-            <div className='p-5'>
-                <img src={post.image} alt={post.title} className="w-full h-full rounded-lg " />
-            </div>
-            <div className=''>
-                <h2 className="text-2xl font-bold p-2">{post.title}</h2>
-                <p className='p-2'><strong>Location:</strong> {post.location}</p>
-                <p className='p-2'><strong>Rent:</strong> {post.rent} TK</p>
-                <p className='p-2'><strong>Room Type:</strong> {post.roomType}</p>
-                <p className='p-2'><strong>Lifestyle:</strong> {post.lifestyle}</p>
-                <p className='p-2'><strong>Description:</strong> {post.description}</p>
-                <p className='p-2'><strong>Availability:</strong> {post.availability}</p>
-                <p className='p-2'><strong>Contact Email:</strong> {post.contact}</p>
-                <p className='p-2'><strong>Posted by:</strong> {post.userName} ({post.userEmail})</p>
+        <div className="max-w-3xl mx-auto p-6 mt-10 bg-white shadow-lg rounded-lg space-y-4">
+            {/* Like info */}
+            <h2 className="text-xl font-semibold text-center text-indigo-600">
+                {likeCount} people interested in
+            </h2>
 
-                <button
-                    onClick={handleLike}
-                    className={`px-4 py-2 mt-4 rounded ${liked ? 'bg-red-500 text-white' : 'bg-gray-300'}`}
-                >
-                    ❤️ {liked ? 'Liked' : 'Like'} ({likeCount})
-                </button>
-           </div>
+            <div className="flex flex-col md:flex-row gap-6">
+                <div className="md:w-1/2">
+                    <img src={post.image} alt={post.title} className="w-full h-full rounded-lg" />
+                </div>
+
+                <div className="md:w-1/2 space-y-3">
+                    <h2 className="text-2xl font-bold">{post.title}</h2>
+                    <p><strong>Location:</strong> {post.location}</p>
+                    <p><strong>Rent:</strong> {post.rent} TK</p>
+                    <p><strong>Room Type:</strong> {post.roomType}</p>
+                    <p><strong>Lifestyle:</strong> {post.lifestyle}</p>
+                    <p><strong>Description:</strong> {post.description}</p>
+                    <p><strong>Availability:</strong> {post.availability}</p>
+                    <p><strong>Posted by:</strong> {post.userName} ({post.userEmail})</p>
+
+                    {showContact && (
+                        <p className="text-green-600 font-semibold">
+                            📞 Contact Number: {post.contact}
+                        </p>
+                    )}
+
+                    <button
+                        onClick={handleLike}
+                        disabled={liked}
+                        className={`px-4 py-2 rounded mt-4 transition font-semibold 
+                            ${liked ? 'bg-red-500 text-white cursor-not-allowed' : 'bg-gray-300 text-black hover:bg-red-100'}`}
+                    >
+                        ❤️ {liked ? 'Liked' : 'Like'} ({likeCount})
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };

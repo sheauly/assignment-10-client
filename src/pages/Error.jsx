@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Footer from '../../componenet/Footer';
-import Navbar from '../../componenet/Navbar';
+
 
 const Error = () => {
     return (
         <div>
-            <Navbar />
+           
             <div className="w-full min-h-[calc(100vh-200px)] flex items-center justify-center bg-gray-100 px-4">
                 <div className="bg-white text-center p-6 sm:p-10 rounded-xl shadow-md max-w-md w-full">
                     <img
@@ -26,7 +25,7 @@ const Error = () => {
                     </Link>
                 </div>
             </div>
-            <Footer />
+            
         </div>
     );
 };
