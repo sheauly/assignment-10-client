@@ -8,8 +8,8 @@ import MyListing from "../pages/MyListing";
 import BrowseListing from "../pages/BrowseListing";
 import Details from "../pages/Details";
 import HomeLayOut from "../LayOut/HomeLayOut";
-
 import PrivetRoute from "../context/PrivateRoute";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
     {
@@ -59,10 +59,14 @@ const router = createBrowserRouter([
                     <UpdatedListing></UpdatedListing>
                 </PrivetRoute>
 
-            }
-            
-        ]
+            },
+            ]
+         },
+    {
+        path: '/*',
+        element: <Error></Error>
     }
+
 ]);
 
 export default router;
