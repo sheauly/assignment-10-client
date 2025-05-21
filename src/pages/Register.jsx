@@ -37,7 +37,7 @@ const Register = () => {
                 })
                     .then(() => {
                         console.log('Profile updated');
-                        navigate('/'); // or any route
+                        navigate('/');
                     })
                     .catch(err => console.log('Profile update error', err));
             })
