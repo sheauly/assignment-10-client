@@ -9,7 +9,7 @@ const Error = () => {
             <div className="w-full min-h-[calc(100vh-200px)] flex items-center justify-center bg-gray-100 px-4">
                 <div className="bg-white text-center p-6 sm:p-10 rounded-xl shadow-md max-w-md w-full">
                     <img
-                        src="https://i.ibb.co/4wMYc1d/istockphoto-1404059706-612x612.jpg"
+                        src="https://i.postimg.cc/qqvvDw0X/2488756.jpg"
                         alt="Error Illustration"
                         className="w-full h-56 sm:h-64 object-contain mb-6 rounded-lg"
                     />
