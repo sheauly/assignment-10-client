@@ -26,7 +26,7 @@ export default function Banner() {
                     <img className="w-full h-full object-cover" src="/image.jpg" alt="Banner 3" />
                 </div>
                 <div className="h-[600px]">
-                    <img className="w-full h-full object-cover" src="/images (2).png" alt="Banner 4" />
+                    <img className="w-full h-full object-cover" src="/public/images2.jpg" alt="Banner 4" />
                 </div>
             </Slider>
         </div>
