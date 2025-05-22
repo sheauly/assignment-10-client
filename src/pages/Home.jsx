@@ -7,6 +7,7 @@ import SuccessStory from './SuccessStory';
 import Lottie from 'lottie-react';
 import { Typewriter } from 'react-simple-typewriter';
 import animationData from "../assets/why-choose-us.json"; 
+import { Helmet } from 'react-helmet';
 
 const Home = () => {
     const roommate = useLoaderData();
@@ -15,12 +16,14 @@ const Home = () => {
 
     return (
         <div>
-            {/* Banner */}
+            <Helmet>
+                <title>RoomMate-Finder || Home</title>
+           </Helmet>
             <section>
                 <Banner />
             </section>
 
-            {/* Featured Roommates */}
+            
             <section className="max-w-7xl mx-auto my-10 px-4">
                 <Fade direction="up" cascade triggerOnce damping={0.2}>
                     <h2 className="text-3xl font-bold mb-6 text-center text-primary">
