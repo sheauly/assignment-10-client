@@ -6,7 +6,7 @@ import { Helmet } from 'react-helmet';
 
 const AddListing = () => {
     const { user } = useContext(AuthContext);
-    console.log(user)
+    // console.log(user)
 
     const handleAddListing = async (e) => {
         e.preventDefault();
