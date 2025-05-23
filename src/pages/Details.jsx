@@ -17,7 +17,7 @@ const Details = () => {
         }
 
         // Send PATCH request to backend
-        fetch(`http://localhost:3000/roommate/${post._id}`, {
+        fetch(`https://assignmet-10-server-orpin.vercel.app/roommate/${post._id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ isLike: true })

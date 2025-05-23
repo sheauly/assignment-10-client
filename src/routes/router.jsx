@@ -14,13 +14,13 @@ import Error from "../pages/Error";
 const router = createBrowserRouter([
     {
         path: "/",
-        element :<HomeLayOut></HomeLayOut>, 
-      
+        element: <HomeLayOut></HomeLayOut>,
+
         children: [
             {
                 path: "/",
-                loader: () => fetch('http://localhost:3000/roommate'),
-                element:<Home></Home>
+                loader: () => fetch('https://assignmet-10-server-orpin.vercel.app/roommate'),
+                element: <Home></Home>
             },
             {
                 path: "/auth/login",
@@ -32,23 +32,25 @@ const router = createBrowserRouter([
             },
             {
                 path: "/add-listing",
-                element: <AddListing></AddListing>
+                element: <PrivetRoute>
+                    <AddListing></AddListing>
+                </PrivetRoute>
             },
-           
+
             {
                 path: "/my-listings",
                 element: <PrivetRoute>
                     <MyListing></MyListing>
                 </PrivetRoute>
             },
-         
+
             {
                 path: "/browse-listings",
                 element: <BrowseListing></BrowseListing>
             },
             {
                 path: "/details/:id",
-                loader: ({ params }) => fetch(`http://localhost:3000/roommate/${params.id}`),
+                loader: ({ params }) => fetch(`https://assignmet-10-server-orpin.vercel.app/roommate/${params.id}`),
                 element: <PrivetRoute>
                     <Details></Details>
                 </PrivetRoute>
@@ -60,8 +62,8 @@ const router = createBrowserRouter([
                 </PrivetRoute>
 
             },
-            ]
-         },
+        ]
+    },
     {
         path: '/*',
         element: <Error></Error>
@@ -70,4 +72,3 @@ const router = createBrowserRouter([
 ]);
 
 export default router;
-  

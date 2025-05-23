@@ -6,7 +6,7 @@ const BrowseListings = () => {
     const [listings, setListings] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/roommate")
+        fetch("https://assignmet-10-server-orpin.vercel.app/roommate")
             .then((res) => res.json())
             .then((data) => setListings(data))
             .catch((err) => console.error(err));
@@ -58,7 +58,7 @@ const BrowseListings = () => {
                     </table>
                 </div>
             </div>
-     </div>
+        </div>
     );
 };
 

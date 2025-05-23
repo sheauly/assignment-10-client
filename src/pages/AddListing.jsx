@@ -29,7 +29,7 @@ const AddListing = () => {
         };
 
 
-        fetch("http://localhost:3000/roommate", {
+        fetch("https://assignmet-10-server-orpin.vercel.app/roommate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newListing),
@@ -45,10 +45,7 @@ const AddListing = () => {
                     form.reset();
                 }
             });
-
-
     }
-
     return (
         <div>
             <Helmet>
@@ -80,7 +77,7 @@ const AddListing = () => {
 
                     <input name="image" placeholder="Image URL" required className="input input-bordered w-full" />
 
-                    {/* Read-only fields for logged-in user */}
+
                     <input name="userName" value={user?.displayName || ""} readOnly className="input input-bordered w-full bg-gray-100" />
                     <input name="userEmail" value={user?.email || ""} readOnly className="input input-bordered w-full bg-gray-100" />
 

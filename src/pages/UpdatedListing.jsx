@@ -24,7 +24,7 @@ const UpdatedListing = () => {
 
     useEffect(() => {
         // fetch existing post data by ID
-        fetch(`http://localhost:3000/roommate/${id}`)
+        fetch(`https://assignmet-10-server-orpin.vercel.app/roommate/${id}`)
             .then(res => res.json())
             .then(data => {
                 setFormData({
@@ -44,7 +44,7 @@ const UpdatedListing = () => {
     const handleUpdate = e => {
         e.preventDefault();
 
-        fetch(`http://localhost:3000/roommate/${id}`, {
+        fetch(`https://assignmet-10-server-orpin.vercel.app/roommate/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData)

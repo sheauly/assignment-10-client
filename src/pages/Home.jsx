@@ -10,20 +10,23 @@ import animationData from "../assets/why-choose-us.json";
 import { Helmet } from 'react-helmet';
 
 const Home = () => {
-    const roommate = useLoaderData();
-    const availableRoommates = roommate.filter(roommate => roommate.availability === "Available");
+    const rawData = useLoaderData();
+    console.log(rawData)
+    const roommate = Array.isArray(rawData) ? rawData : rawData.roommates || [];
+    
+    const availableRoommates = roommate.filter(r => r.availability === "Available");
     const initialRoommate = availableRoommates.slice(0, 6);
 
     return (
         <div>
             <Helmet>
                 <title>RoomMate-Finder || Home</title>
-           </Helmet>
+            </Helmet>
+
             <section>
                 <Banner />
             </section>
 
-            
             <section className="max-w-7xl mx-auto my-10 px-4">
                 <Fade direction="up" cascade triggerOnce damping={0.2}>
                     <h2 className="text-3xl font-bold mb-6 text-center text-primary">

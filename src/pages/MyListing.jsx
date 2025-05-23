@@ -14,7 +14,7 @@ const MyListings = () => {
     useEffect(() => {
         if (user?.email) {
             setLoading(true);
-            fetch(`http://localhost:3000/roommate/user/${user.email}`)
+            fetch(`https://assignmet-10-server-orpin.vercel.app/roommate/user/${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setMyListings(data);
@@ -38,7 +38,7 @@ const MyListings = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/roommate/${id}`, {
+                fetch(`https://assignmet-10-server-orpin.vercel.app/roommate/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())
