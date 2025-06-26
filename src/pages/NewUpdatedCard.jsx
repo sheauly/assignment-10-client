@@ -1,58 +1,69 @@
 import React from 'react';
 import { Fade } from 'react-awesome-reveal';
 
-const steps = [
-    {
-        id: 1,
-        title: 'Create Your Profile',
-        desc: 'Set your preferences, location, lifestyle and rent range to help find the ideal match.',
-        icon: '👤'
-    },
-    {
-        id: 2,
-        title: 'Explore Matches',
-        desc: 'View verified roommate listings that match your needs and interests.',
-        icon: '🔍'
-    },
-    {
-        id: 3,
-        title: 'Start Chatting',
-        desc: 'Send messages, ask questions and get to know your potential roommate.',
-        icon: '💬'
-    },
-    {
-        id: 4,
-        title: 'Move In Together',
-        desc: 'Finalize the details and enjoy a safe, friendly living experience!',
-        icon: '🏠'
-    }
-];
-
-
 const NewUpdatedCard = () => {
     return (
         <section className="py-16 px-4 bg-base-200 rounded-2xl">
-                    <div className="max-w-6xl mx-auto text-center">
-                        <Fade direction="up" triggerOnce>
-                            <h2 className="text-4xl font-bold text-primary mb-4">How Roommate Finder Works</h2>
-                            <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
-                                Our process is simple, fast, and designed to connect you with the perfect roommate in just a few steps.
-                            </p>
-                        </Fade>
-        
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                            {steps.map(step => (
-                                <Fade key={step.id} direction="up" delay={step.id * 100} triggerOnce>
-                                    <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300">
-                                        <div className="text-4xl mb-4">{step.icon}</div>
-                                        <h3 className="text-xl font-bold text-secondary mb-2">{step.title}</h3>
-                                        <p className="text-gray-600">{step.desc}</p>
-                                    </div>
-                                </Fade>
-                            ))}
+            <div className="max-w-6xl mx-auto text-center">
+                <Fade direction="up" triggerOnce>
+                    <h2 className="text-4xl font-bold text-primary mb-4">How Roommate Finder Works</h2>
+                    <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+                        Our process is simple, fast, and designed to connect you with the perfect roommate in just a few steps.
+                    </p>
+                </Fade>
+
+                {/* Cards with animation */}
+                <div className='flex flex-col lg:flex-row justify-center items-center gap-5'>
+                    <Fade direction="left" triggerOnce>
+                        <div className="card bg-base-100 w-96 shadow-sm">
+                            <figure className="px-10 pt-10">
+                                <img
+                                    src="https://i.ibb.co/s9wGySh0/images.jpg"
+                                    alt="Shoes"
+                                    className="rounded-xl" />
+                            </figure>
+                            <div className="card-body items-center text-center">
+                                <h2 className="card-title">How to Find the Perfect Roommate</h2>
+                                <p>Tips and tricks to choose the best roommate for your lifestyle...</p>
+                                <p className='text-gray-500'>Date: 10/2/2025</p>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </Fade>
+
+                    <Fade direction="up" delay={100} triggerOnce>
+                        <div className="card bg-base-100 w-96 shadow-sm">
+                            <figure className="px-10 pt-10">
+                                <img
+                                    src="https://i.ibb.co/6Rtqjjrh/images.jpg"
+                                    alt="Shoes"
+                                    className="rounded-xl" />
+                            </figure>
+                            <div className="card-body items-center text-center">
+                                <h2 className="card-title">Budgeting Your Shared Apartment</h2>
+                                <p>Learn how to split costs and manage finances with your roommate...</p>
+                                <p className='text-gray-500'>Date: 5/11/2025</p>
+                            </div>
+                        </div>
+                    </Fade>
+
+                    <Fade direction="right" delay={200} triggerOnce>
+                        <div className="card bg-base-100 w-96 shadow-sm">
+                            <figure className="px-10 pt-10">
+                                <img
+                                    src="https://i.ibb.co/gM0T8LHf/images.jpg"
+                                    alt="Shoes"
+                                    className="rounded-xl" />
+                            </figure>
+                            <div className="card-body items-center text-center">
+                                <h2 className="card-title">Creating a Harmonious Living Space</h2>
+                                <p>Design ideas and communication tips for peaceful co-living...</p>
+                                <p className='text-gray-500'>Date: 6/10/2025</p>
+                            </div>
+                        </div>
+                    </Fade>
+                </div>
+            </div>
+        </section>
     );
 };
 
