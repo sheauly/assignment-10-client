@@ -8,6 +8,8 @@ import Lottie from 'lottie-react';
 import { Typewriter } from 'react-simple-typewriter';
 import animationData from "../assets/why-choose-us.json"; 
 import { Helmet } from 'react-helmet';
+import MutionCard from './MutionCard';
+import NewUpdatedCard from './NewUpdatedCard';
 
 const Home = () => {
     const rawData = useLoaderData();
@@ -118,6 +120,12 @@ const Home = () => {
                 <Fade direction="right" triggerOnce>
                     <SuccessStory />
                 </Fade>
+            </section>
+            <section>
+                <MutionCard></MutionCard>
+            </section>
+            <section>
+                <NewUpdatedCard></NewUpdatedCard>
             </section>
         </div>
     );

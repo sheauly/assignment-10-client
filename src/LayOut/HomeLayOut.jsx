@@ -9,7 +9,7 @@ const HomeLayOut = () => {
             <header>
                 <Navbar></Navbar>
             </header>
-            <main className='w-11/12 min-h-screen mx-auto mt-8'>
+            <main className='w-11/12 min-w-xl mx-auto mt-8'>
                 <Outlet></Outlet>
             </main>
             <footer>

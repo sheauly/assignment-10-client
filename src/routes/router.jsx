@@ -10,6 +10,15 @@ import Details from "../pages/Details";
 import HomeLayOut from "../LayOut/HomeLayOut";
 import PrivetRoute from "../context/PrivateRoute";
 import Error from "../pages/Error";
+import DashLayOut from '../LayOut/DashLayOut';
+import DashBoard from "../pages/Dashboard";
+import Contact from "../pages/Contact";
+import Support from "../pages/Support"
+import AboutUs from "../pages/AboutUs";
+import Dashboard from "../pages/Dashboard";
+import DashBoardHome from "../pages/DashBoardHome";
+import MyProfileCard from "../pages/MyProfileCard";
+
 
 const router = createBrowserRouter([
     {
@@ -31,18 +40,20 @@ const router = createBrowserRouter([
                 element: <Register></Register>
             },
             {
-                path: "/add-listing",
-                element: <PrivetRoute>
-                    <AddListing></AddListing>
-                </PrivetRoute>
+                path: '/contact',
+                element: <Contact></Contact>
             },
-
             {
-                path: "/my-listings",
-                element: <PrivetRoute>
-                    <MyListing></MyListing>
-                </PrivetRoute>
+                path: '/support',
+                element: <Support></Support>
             },
+            {
+                path: '/about-us',
+                element: <AboutUs></AboutUs>
+            },
+         
+
+          
 
             {
                 path: "/browse-listings",
@@ -64,6 +75,30 @@ const router = createBrowserRouter([
             },
         ]
     },
+    {
+        path: "/dashboard",
+        element: <PrivetRoute><DashLayOut /></PrivetRoute>,
+        children: [
+            {
+                index: true,
+                element: <DashBoardHome></DashBoardHome>
+            },
+    
+            {
+                path: "add-listing", 
+                element: <AddListing />
+            },
+            {
+                path: "my-listings", 
+                element: <MyListing />
+            },
+            {
+                path: "myProfileCard",
+                element: <MyProfileCard></MyProfileCard>
+            }
+
+        ]
+      },
     {
         path: '/*',
         element: <Error></Error>

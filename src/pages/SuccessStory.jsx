@@ -30,7 +30,7 @@ const steps = [
 
 const SuccessStory = () => {
     return (
-        <section className="py-16 px-4 bg-base-200">
+        <section className="py-16 px-4 bg-base-200 rounded-2xl">
             <div className="max-w-6xl mx-auto text-center">
                 <Fade direction="up" triggerOnce>
                     <h2 className="text-4xl font-bold text-primary mb-4">How Roommate Finder Works</h2>

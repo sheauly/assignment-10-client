@@ -1,103 +1,178 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
+import { toast } from "react-toastify";
+import { updateProfile } from "firebase/auth";
+
+import registersLotte from '../../src/assets/lottees/registers.json';
+import birdLottie from '../../src/assets/lottees/bird.json';
+import Lottie from "lottie-react";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
-    const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
-    const [error, setError] = useState(null);
-    
+    const { createUser, googleSignIn } = useContext(AuthContext);
+    const location = useLocation();
     const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
 
-    const handleSubmit = e => {
+    const handleRegister = (e) => {
         e.preventDefault();
         const form = e.target;
         const formData = new FormData(form);
-        const name = formData.get('name');
-        const photo = formData.get('photo');
-        const email = formData.get('email');
-        const password = formData.get('password');
+        const name = formData.get("name");
+        const photo = formData.get("photo");
+        const email = formData.get("email");
+        const password = formData.get("password");
 
-        const uppercase = /[A-Z]/.test(password);
-        const lowercase = /[a-z]/.test(password);
-        const lengthValid = password.length >= 6;
+        // password validation
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasMinLength = password.length >= 6;
 
-        if (!uppercase || !lowercase || !lengthValid) {
-            setError("Password must contain at least one uppercase, one lowercase and be 6+ characters.");
+        if (!hasUppercase || !hasLowercase || !hasMinLength) {
+            toast.error("Password must have uppercase, lowercase & at least 6 characters");
             return;
         }
 
-        // Create user in Firebase
         createUser(email, password)
-            .then( () => {
-                
-                updateUser({
+            .then((userCredential) => {
+                const user = userCredential.user;
+                return updateProfile(user, {
                     displayName: name,
-                    photoURL: photo
-                })
-                    .then(() => {
-                        console.log('Profile updated');
-                        navigate('/');
-                    })
-                    .catch(err => console.log('Profile update error', err));
+                    photoURL: photo,
+                });
             })
-            .catch(error => {
-                console.log(error);
-                setError("Registration failed.");
+            .then(() => {
+                toast.success("Registration successful!");
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                toast.error(error.message);
             });
     };
 
-    const handleGoogleRegister = () => {
+    const handleGoogleLogin = () => {
         googleSignIn()
-            .then(result => {
-                navigate('/')
-            console.log(result)
-        })
-            .catch(error => {
-            console.log(error);
-        })
-    }
+            .then(() => {
+                toast.success("Google Registration successful!");
+                navigate("/");
+            })
+            .catch((error) => {
+                toast.error(error.message);
+            });
+    };
 
     return (
-        <div className="flex justify-center items-center min-h-screen px-4 py-10 bg-base-200">
-            <div className="w-full max-w-sm sm:max-w-md md:max-w-lg bg-white shadow-xl rounded-xl p-6 sm:p-8">
-                <h2 className="text-2xl font-bold text-center mb-6">Register Your Account</h2>
-                <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-4 py-12 ">
+            <Helmet>
+                <title>Management Resturent || Register</title>
+            </Helmet>
+            {/* Lottie */}
+            <div className="w-full md:w-1/2">
+                <Lottie animationData={registersLotte} loop className="w-full max-w-sm mx-auto" />
+            </div>
+
+            {/* Form */}
+            <div className="w-full max-w-md bg-white md:p-8 rounded-xl shadow-xl">
+                <h2 className="text-2xl font-bold text-center mb-4">Create an Account Register</h2>
+
+                <div className="flex justify-center mb-4">
+                    <Lottie animationData={birdLottie} loop className="w-20" />
+                </div>
+
+                <form onSubmit={handleRegister} className="space-y-4">
+                    {/* Name */}
                     <div>
-                        <label htmlFor="name" className="label">Name</label>
-                        <input id="name" name="name" type="text" className="input input-bordered w-full" placeholder="Your Name" required />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input
+                            type="text"
+                            name="name"
+                            required
+                            placeholder="Your name"
+                            className="input input-bordered  w-full rounded-3xl "
+                        />
                     </div>
 
+                    {/* Photo */}
                     <div>
-                        <label htmlFor="photo" className="label">Photo URL</label>
-                        <input id="photo" name="photo" type="text" className="input input-bordered w-full" placeholder="Photo URL" required />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Photo URL</label>
+                        <input
+                            type="text"
+                            name="photo"
+                            required
+                            placeholder="Your photo URL"
+                            className="input input-bordered w-full rounded-3xl"
+                        />
                     </div>
 
+                    {/* Email */}
                     <div>
-                        <label htmlFor="email" className="label">Email</label>
-                        <input id="email" name="email" type="email" className="input input-bordered w-full" placeholder="Email" required />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                        <input
+                            type="email"
+                            name="email"
+                            required
+                            placeholder="Your email"
+                            className="input input-bordered w-full rounded-3xl"
+                        />
                     </div>
 
+                    {/* Password */}
                     <div>
-                        <label htmlFor="password" className="label">Password</label>
-                        <input id="password" name="password" type="password" className="input input-bordered w-full" placeholder="Password" required />
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input
+                            type="password"
+                            name="password"
+                            required
+                            placeholder="Password"
+                            className="input input-bordered w-full rounded-3xl"
+                        />
+                        <p className="text-xs text-gray-500 mt-1">
+                            Must be at least 6 characters, include one uppercase and one lowercase.
+                        </p>
                     </div>
 
-                    <button type="submit" className="btn btn-neutral w-full">Register</button>
-
-                    <div className="divider">OR</div>
-
-                    <button onClick={handleGoogleRegister} type="button" className="btn btn-outline btn-secondary w-full flex items-center justify-center gap-2">
-                        {/* Google icon here */}
-                        Register with Google
+                    {/* Submit */}
+                    <button
+                        type="submit"
+                        className="btn btn-primary w-full text-white rounded-3xl"
+                    >
+                        Register
                     </button>
-
-                    <p className="text-center text-sm pt-5">
-                        Already have an account? <Link to="/auth/login" className="text-green-700 font-medium">Login</Link>
-                    </p>
-
-                    {error && <p className="text-red-500 text-sm text-center">{error}</p>}
                 </form>
+
+                <div className="divider">OR</div>
+
+                {/* Google Sign In */}
+                <button
+                    onClick={handleGoogleLogin}
+                    className="btn btn-outline w-full flex items-center rounded-3xl gap-2"
+                >
+                    <svg
+                        aria-label="Google logo"
+                        width="16"
+                        height="16"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                    >
+                        <g>
+                            <path d="m0 0H512V512H0" fill="#fff"></path>
+                            <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path>
+                            <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path>
+                            <path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path>
+                            <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path>
+                        </g>
+                    </svg>
+                    Register with Google
+                </button>
+
+                {/* Login Link */}
+                <p className="mt-4 text-center text-sm">
+                    Already have an account?{" "}
+                    <Link to="/auth/login" className="text-blue-600 hover:underline font-medium">
+                        Login here
+                    </Link>
+                </p>
             </div>
         </div>
     );

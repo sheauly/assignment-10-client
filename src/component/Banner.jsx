@@ -20,28 +20,28 @@ export default function Banner() {
                 <div className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px]">
                     <img
                         className="w-full h-full object-cover"
-                        src="/Banner.png"
+                        src="https://i.ibb.co/7tZYycbc/flat-social-media-cover-template-international-day-families-celebration-23-2150316513.jpg"
                         alt="Banner 1"
                     />
                 </div>
                 <div className="h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px]">
                     <img
                         className="w-full h-full object-cover"
-                        src="/Banner2.png"
+                        src="https://i.ibb.co/9krLXTwb/hand-drawn-escape-room-facebook-cover-23-2149926017.jpg"
                         alt="Banner 2"
                     />
                 </div>
                 <div className="h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px]">
                     <img
                         className="w-full h-full object-cover"
-                        src="/image.jpg"
+                        src="https://i.ibb.co/HDZcHwWC/image.jpg"
                         alt="Banner 3"
                     />
                 </div>
                 <div className="h-[250px] sm:h-[350px] md:h-[450px] lg:h-[600px]">
                     <img
                         className="w-full h-full object-cover"
-                        src="/images2.jpg"
+                        src="https://i.ibb.co/TBmVXHYt/hand-drawn-escape-room-facebook-cover-23-2149996034.jpg"
                         alt="Banner 4"
                     />
                 </div>

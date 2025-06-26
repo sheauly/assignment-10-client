@@ -1,8 +1,8 @@
-import { FaFacebookF, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer className="bg-gray-900 text-white py-10 px-4">
+        <footer className="bg-gray-900 text-white py-10 mt-10 px-4">
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 
                 {/* Contact Info */}
@@ -34,6 +34,9 @@ const Footer = () => {
                         </a>
                         <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                             <FaInstagram className="text-2xl hover:text-pink-500 transition duration-300" />
+                        </a>
+                        <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+                            <FaYoutube className="text-2xl hover:text-pink-500 transition duration-300" />
                         </a>
                     </div>
                 </div>
