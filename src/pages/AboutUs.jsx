@@ -1,5 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const features = [
     {
@@ -25,6 +27,7 @@ const features = [
 ];
 
 const AboutUs = () => {
+    const { darkMode } = useContext(AuthContext);
     return (
         <section className="py-12 px-4 bg-base-100">
             <div className="max-w-6xl mx-auto text-center">
@@ -42,7 +45,7 @@ const AboutUs = () => {
 
                 {/* Paragraph */}
                 <motion.p
-                    className="text-gray-600 max-w-3xl mx-auto mb-10"
+                    className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.2 }}
@@ -65,7 +68,7 @@ const AboutUs = () => {
                             <div className="card-body items-center text-center">
                                 <div className="text-5xl mb-3">{item.icon}</div>
                                 <h3 className="text-lg font-semibold text-green-700">{item.title}</h3>
-                                <p className="text-gray-600">{item.description}</p>
+                                <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>{item.description}</p>
                             </div>
                         </motion.div>
                     ))}

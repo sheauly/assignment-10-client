@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Fade } from 'react-awesome-reveal';
+import { AuthContext } from '../context/AuthContext';
 
 const NewUpdatedCard = () => {
+    const { darkMode } = useContext(AuthContext);
     return (
-        <section className="py-16 px-4 bg-base-200 rounded-2xl">
+        <section className="py-16 px-4 bg-base-200 mt-10 rounded-2xl">
             <div className="max-w-6xl mx-auto text-center">
                 <Fade direction="up" triggerOnce>
                     <h2 className="text-4xl font-bold text-primary mb-4">How Roommate Finder Works</h2>
-                    <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+                    <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>
                         Our process is simple, fast, and designed to connect you with the perfect roommate in just a few steps.
                     </p>
                 </Fade>
@@ -23,9 +25,9 @@ const NewUpdatedCard = () => {
                                     className="rounded-xl" />
                             </figure>
                             <div className="card-body items-center text-center">
-                                <h2 className="card-title">How to Find the Perfect Roommate</h2>
-                                <p>Tips and tricks to choose the best roommate for your lifestyle...</p>
-                                <p className='text-gray-500'>Date: 10/2/2025</p>
+                                <h2 className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>How to Find the Perfect Roommate</h2>
+                                <p >Tips and tricks to choose the best roommate for your lifestyle...</p>
+                                <p>Date: 10/2/2025</p>
                             </div>
                         </div>
                     </Fade>
@@ -41,7 +43,7 @@ const NewUpdatedCard = () => {
                             <div className="card-body items-center text-center">
                                 <h2 className="card-title">Budgeting Your Shared Apartment</h2>
                                 <p>Learn how to split costs and manage finances with your roommate...</p>
-                                <p className='text-gray-500'>Date: 5/11/2025</p>
+                                <p>Date: 5/11/2025</p>
                             </div>
                         </div>
                     </Fade>
@@ -57,7 +59,7 @@ const NewUpdatedCard = () => {
                             <div className="card-body items-center text-center">
                                 <h2 className="card-title">Creating a Harmonious Living Space</h2>
                                 <p>Design ideas and communication tips for peaceful co-living...</p>
-                                <p className='text-gray-500'>Date: 6/10/2025</p>
+                                <p>Date: 6/10/2025</p>
                             </div>
                         </div>
                     </Fade>

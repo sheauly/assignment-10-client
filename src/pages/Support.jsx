@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import { Fade } from 'react-awesome-reveal';
+import { AuthContext } from '../context/AuthContext';
 
 const supportData = [
     {
@@ -24,17 +25,19 @@ const supportData = [
 ];
 
 const SupportSection = () => {
+    const { darkMode } = useContext(AuthContext);
+
     return (
         <section className="py-10 px-4 bg-base-200">
             <div className="max-w-6xl mx-auto text-center">
                 <Fade direction="up" triggerOnce>
                     <h2 className="text-3xl md:text-4xl font-bold mb-3 text-primary">Need Help? We’re Here</h2>
-                    <p className="text-gray-600 mb-10">
+                    <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>
                         We’re committed to making your roommate search easy, safe, and personalized. Reach out to us anytime.
                     </p>
                </Fade>
 
-                <div className="grid gap-6 md:grid-cols-3">
+                <div className="grid gap-6 md:grid-cols-3 mt-4">
                     {supportData.map((item, idx) => (
                         <motion.div
                             key={idx}

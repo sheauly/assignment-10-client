@@ -4,8 +4,11 @@ import Lottie from 'lottie-react';
 import contactAnimation from '../assets/contact.json';
 import { Typewriter } from 'react-simple-typewriter';
 import { Tooltip } from 'react-tooltip';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const ContactUs = () => {
+    const { darkMode } = useContext(AuthContext);
     return (
         <section className="max-w-7xl mx-auto px-4 py-12">
             <Fade direction="up" triggerOnce>
@@ -32,7 +35,7 @@ const ContactUs = () => {
                             </span>
                         </h2>
 
-                        <p className="mb-4 text-gray-600">
+                        <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>
                             Have a question about finding a roommate? Need help with your listing?
                             Fill out the form below and we’ll respond shortly.
                         </p>

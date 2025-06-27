@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Fade } from 'react-awesome-reveal';
+import { AuthContext } from '../context/AuthContext';
 
 const steps = [
+  
     {
         id: 1,
         title: 'Create Your Profile',
@@ -28,18 +30,20 @@ const steps = [
     }
 ];
 
+
 const SuccessStory = () => {
+    const { darkMode } = useContext(AuthContext)
     return (
         <section className="py-16 px-4 bg-base-200 rounded-2xl">
             <div className="max-w-6xl mx-auto text-center">
                 <Fade direction="up" triggerOnce>
-                    <h2 className="text-4xl font-bold text-primary mb-4">How Roommate Finder Works</h2>
-                    <p className="text-gray-600 mb-12 max-w-2xl mx-auto">
+                    <h2 className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>How Roommate Finder Works</h2>
+                    <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg `}>
                         Our process is simple, fast, and designed to connect you with the perfect roommate in just a few steps.
                     </p>
                 </Fade>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-4">
                     {steps.map(step => (
                         <Fade key={step.id} direction="up" delay={step.id * 100} triggerOnce>
                             <div className="p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition duration-300">

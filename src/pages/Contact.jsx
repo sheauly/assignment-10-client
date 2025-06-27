@@ -17,12 +17,12 @@ const Contact = () => {
                 <ul className="space-y-4 text-gray-700 text-base">
                     <li className="flex items-center gap-4 bg-white p-4 rounded-lg shadow hover:shadow-md transition">
                         <FaEnvelope className="text-green-600 text-xl" />
-                        <span><strong>Email:</strong> support@roommatefinder.com</span>
+                        <span><strong>Email:</strong> shulybd1245.com</span>
                     </li>
 
                     <li className="flex items-center gap-4 bg-white p-4 rounded-lg shadow hover:shadow-md transition">
                         <FaPhoneAlt className="text-blue-600 text-xl" />
-                        <span><strong>Phone:</strong> +8801234-567890</span>
+                        <span><strong>Phone:</strong> +8801518471238</span>
                     </li>
 
                     <li className="flex items-center gap-4 bg-white p-4 rounded-lg shadow hover:shadow-md transition">

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Banner from '../component/Banner';
 import { Fade } from 'react-awesome-reveal';
@@ -10,14 +10,16 @@ import animationData from "../assets/why-choose-us.json";
 import { Helmet } from 'react-helmet';
 import MutionCard from './MutionCard';
 import NewUpdatedCard from './NewUpdatedCard';
+import { AuthContext } from '../context/AuthContext';
 
 const Home = () => {
     const rawData = useLoaderData();
+    const { darkMode } = useContext(AuthContext);
     console.log(rawData)
     const roommate = Array.isArray(rawData) ? rawData : rawData.roommates || [];
     
     const availableRoommates = roommate.filter(r => r.availability === "Available");
-    const initialRoommate = availableRoommates.slice(0, 6);
+    const initialRoommate = availableRoommates.slice(0, 8);
 
     return (
         <div>
@@ -35,7 +37,7 @@ const Home = () => {
                         Featured Roommates
                     </h2>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         {initialRoommate.map((roommate) => (
                             <Fade key={roommate._id} triggerOnce>
                                 <div className="bg-base-100 rounded-xl shadow p-4 flex flex-col justify-between">
@@ -50,12 +52,12 @@ const Home = () => {
                                         <p><span className="font-medium">Budget:</span> ${roommate.rent}</p>
                                         <p><span className="font-medium">Lifestyle:</span> {roommate.lifestyle}</p>
                                     </div>
-                                    <div className="mt-4 text-end">
+                                    <div className="mt-4">
                                         <Link
                                             to={`/details/${roommate._id}`}
-                                            className="btn btn-sm btn-outline btn-primary"
+                                            className="btn btn-sm w-full btn-outline btn-primary"
                                         >
-                                            View Details
+                                            See More
                                         </Link>
                                     </div>
                                 </div>
@@ -83,7 +85,7 @@ const Home = () => {
                                 />
                             </span>
                         </h2>
-                        <p className="text-gray-600 mt-4">
+                        <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>
                             We make finding roommates smooth, safe, and simple!
                         </p>
                     </div>
@@ -96,13 +98,13 @@ const Home = () => {
                         </div>
                         <div className="space-y-4">
                             <h3 className="text-2xl font-bold text-primary">Verified Listings</h3>
-                            <p className="text-gray-700">Only trusted posts, no scams.</p>
+                            <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`} >Only trusted posts, no scams.</p>
 
                             <h3 className="text-2xl font-bold text-primary">Quick Communication</h3>
-                            <p className="text-gray-700">Contact roommates instantly and securely.</p>
+                            <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>Contact roommates instantly and securely.</p>
 
                             <h3 className="text-2xl font-bold text-primary">Privacy First</h3>
-                            <p className="text-gray-700">We never share your data publicly.</p>
+                            <p className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>We never share your data publicly.</p>
                         </div>
                     </div>
                 </Fade>
