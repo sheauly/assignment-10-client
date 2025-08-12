@@ -28,7 +28,7 @@ const Banner = () => {
                         Browse trusted listings tailored to your lifestyle, budget and location.
                     </p>
                     <Link
-                        to="/browse"
+                        to="/browse-listings"
                         className="btn bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg"
                     >
                         Browse Listings

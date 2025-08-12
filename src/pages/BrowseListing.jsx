@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const BrowseListings = () => {
     const [listings, setListings] = useState([]);
+    const {darkMode} = useContext(AuthContext)
 
     useEffect(() => {
         fetch("https://assignmet-10-server-orpin.vercel.app/roommate")
@@ -42,8 +44,8 @@ const BrowseListings = () => {
                             {listings.map((item, index) => (
                                 <tr key={item._id}>
                                     <td>{index + 1}</td>
-                                    <td>{item.title}</td>
-                                    <td>{item.location}</td>
+                                    <td className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>{item.title}</td>
+                                    <td className={`${darkMode ? "text-gray-300" : "text-white"} text-lg`}>{item.location}</td>
                                     <td>৳{item.rent}</td>
                                     <td>{item.roomType}</td>
                                     <td>{item.availability}</td>

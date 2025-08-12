@@ -18,7 +18,7 @@ const DashLayOut = () => {
                </div>
                 <ul className="space-y-2">
                     {/* <li><NavLink to="/dashboard" className={({ isActive }) => isActive ? "text-green-700 font-bold" : "text-gray-700"}>Dashboard Home</NavLink></li> */}
-                    <li><NavLink to="/dashboard/add-listing" className={({ isActive }) => isActive ? "text-green-700 font-bold" : "text-white"}>Add Listing</NavLink></li>
+                    <li><NavLink to="/dashboard/add-listing" className={({ isActive }) => isActive ? "text-green-700 font-bold" : "text-whi"}>Add Listing</NavLink></li>
                     <li><NavLink to="/dashboard/my-listings" className={({ isActive }) => isActive ? "text-green-700 font-bold" : "text-white"}>My Listings</NavLink></li>
                 </ul>
             </aside>

@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext';
 const Details = () => {
     const post = useLoaderData();
     const { user } = useContext(AuthContext);
+    const { darkMode } = useContext(AuthContext);
 
     const [liked, setLiked] = useState(false); // starts false
     const [likeCount, setLikeCount] = useState(post.likes || 0);
@@ -50,20 +51,22 @@ const Details = () => {
                 </div>
 
                 <div className="md:w-1/2 space-y-3">
-                    <h2 className="text-2xl font-bold">{post.title}</h2>
-                    <p><strong>Location:</strong> {post.location}</p>
-                    <p><strong>Rent:</strong> {post.rent} TK</p>
-                    <p><strong>Room Type:</strong> {post.roomType}</p>
-                    <p><strong>Lifestyle:</strong> {post.lifestyle}</p>
-                    <p><strong>Description:</strong> {post.description}</p>
-                    <p><strong>Availability:</strong> {post.availability}</p>
-                    <p><strong>Posted by:</strong> {post.userName} ({post.userEmail})</p>
+                       
+                    <h2 className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg font-bold`}>{post.title}</h2>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg`}><strong>Location:</strong> {post.location}</p>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg`}><strong>Rent:</strong> {post.rent} TK</p>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg`}><strong>Room Type:</strong> {post.roomType}</p>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg`}><strong>Lifestyle:</strong> {post.lifestyle}</p>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg`}><strong>Description:</strong> {post.description}</p>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg`}><strong>Availability:</strong> {post.availability}</p>
+                    <p className={`${darkMode ? "text-gray-300" : "text-gray-800"} text-lg`}><strong>Posted by:</strong> {post.userName} ({post.userEmail})</p>
 
                     {showContact && (
-                        <p className="text-green-600 font-semibold">
+                        <p className="text-green-400 font-semibold">
                             📞 Contact Number: {post.contact}
                         </p>
                     )}
+
 
                     <button
                         onClick={handleLike}
